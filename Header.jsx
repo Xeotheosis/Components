@@ -5,12 +5,20 @@ const Header = () => {
   const [isSideBarExpanded, setSideBarExpanded] = useState(false);
 
   const menuItems = [
-    { icon: "bx bxs-dashboard", label: "Acasa" },
-    { icon: "bx bxs-info-circle", label: "Info" },
-    { icon: "bx bx-dollar-circle", label: "Cheltuieli" },
-    { icon: "bx bxs-file-pdf", label: "Rapoarte" },
-    { icon: "bx bx-buildings", label: "Apartamente" },
-    { icon: "bx bxs-cog", label: "Setari" },
+    {
+      icon: "bx bxs-dashboard",
+      label: "Acasa",
+      href: "#",
+    },
+    {
+      icon: "bx bxs-info-circle",
+      label: "Info",
+      href: "#",
+    },
+    { icon: "bx bx-dollar-circle", label: "Cheltuieli", href: "#Login.aspx" },
+    { icon: "bx bxs-file-pdf", label: "Rapoarte", href: "#" },
+    { icon: "bx bx-buildings", label: "Apartamente", href: "#" },
+    { icon: "bx bxs-cog", label: "Setari", href: "#" },
   ];
 
   return (
@@ -45,23 +53,29 @@ const Header = () => {
                   ? "bg-indigo-50"
                   : "hover:bg-indigo-50 text-gray-600"
               }`}>
-              <i className={`${item.icon} text-3xl`}></i>
-              <span
-                className={`text-lg ${isSideBarExpanded ? "block" : "hidden"}`}>
-                {item.label}
-              </span>
-              {activeItem === index && (
-                <div
-                  className={`absolute right-0 top-2 w-2 h-2 rounded bg-indigo-400 ${
-                    isSideBarExpanded ? "" : "block"
-                  }`}></div>
-              )}
-              {!isSideBarExpanded && (
-                <div
-                  className={`absolute z-50 left-full rounded-md px-2 py-1 bg-indigo-100 text-indigo-800 text-sm invisible opacity-0 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}>
+              <a
+                href={item.href}
+                className="flex items-center gap-4">
+                <i className={`${item.icon} text-3xl`}></i>
+                <span
+                  className={`text-lg ${
+                    isSideBarExpanded ? "block" : "hidden"
+                  }`}>
                   {item.label}
-                </div>
-              )}
+                </span>
+                {activeItem === index && (
+                  <div
+                    className={`absolute right-0 top-2 w-2 h-2 rounded bg-indigo-400 ${
+                      isSideBarExpanded ? "" : "block"
+                    }`}></div>
+                )}
+                {!isSideBarExpanded && (
+                  <div
+                    className={`absolute z-50 left-full rounded-md px-2 py-1 bg-indigo-100 text-indigo-800 text-sm invisible opacity-0 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}>
+                    {item.label}
+                  </div>
+                )}
+              </a>
             </li>
           ))}
           <li
